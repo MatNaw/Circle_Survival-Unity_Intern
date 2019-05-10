@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class GameMechanicsParameters : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public float minLifeTime;
+    public float maxLifeTime;
+    public float spawnInterval;
+    public float chanceForBadCircle;
 }
