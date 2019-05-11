@@ -41,9 +41,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
   - name: Background
     uniqueID: 958008125
     locked: 0
-  - name: Default
-    uniqueID: 0
+  - name: Environment
+    uniqueID: 1675260209
+    locked: 0
+  - name: FillCircleLayer
+    uniqueID: 3721163197
     locked: 0

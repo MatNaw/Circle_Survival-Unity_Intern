@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    /*public delegate void ActionDelegate();
+    public delegate void ActionDelegate();
 
-    public ActionDelegate restart;*/
+    public ActionDelegate restart;
+
+    public UIManager UIManager;
 
     public SpawnCircles circles;
     public GameMechanicsParameters GameMechanicsParameters;
 
-    bool isGameRunning;
+    public bool isGameRunning;
 
     #region SINGLETON
     private static GameManager _i;
@@ -49,10 +51,9 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    void Start()
+    void Awake()
     {
-        LoadGame();
-        isGameRunning = true; //test
+        restart += LoadGame;
     }
 
     void Update()
@@ -63,10 +64,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void PauseGame()
+    {
+
+    }
+
+    public void ResumeGame()
+    {
+
+    }
+
+    public void RestartGame()
+    {
+        if (restart != null)
+        {
+            restart.Invoke();
+        }
+    }
+
     void LoadGame()
     {
         savegame.Load();
         Debug.Log("Score: " + savegame.score + ", highscore: " + savegame.highscore);
+        isGameRunning = true; //test
     }
 
     public void GameOver()
@@ -74,5 +94,7 @@ public class GameManager : MonoBehaviour
         if (savegame.score > savegame.highscore) savegame.highscore = savegame.score;
         savegame.Save();
         isGameRunning = false;
+        UIManager.HidePanel(UIManager.gameUIPanel);
+        UIManager.ShowPanel(UIManager.gameOverPanel);
     }
 }

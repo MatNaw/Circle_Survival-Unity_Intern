@@ -38,6 +38,7 @@ public class Circle : MonoBehaviour
     public void DestroyCircle()
     {
         GameManager.i.circles.spawnPositions.Remove(this.transform.position);
+        GameManager.i.circles.circlesList.Remove(this);
         Destroy(gameObject);
     }
 }

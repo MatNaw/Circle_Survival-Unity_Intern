@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class GameMechanicsParameters : MonoBehaviour
 {
-    public float minLifeTime;
-    public float maxLifeTime;
+    public float basicMinLifeTime;
+    public float basicMaxLifeTime;
+    public float lifeTimeModifier;
     public float basicSpawnInterval;
     public float spawnIntervalModifier;
     public float chanceForBadCircle;
-    public int circleValue;
+    //public float maxCirclesSpawned;
 }
