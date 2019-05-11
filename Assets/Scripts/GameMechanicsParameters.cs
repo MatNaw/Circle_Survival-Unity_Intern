@@ -6,6 +6,8 @@ public class GameMechanicsParameters : MonoBehaviour
 {
     public float minLifeTime;
     public float maxLifeTime;
-    public float spawnInterval;
+    public float basicSpawnInterval;
+    public float spawnIntervalModifier;
     public float chanceForBadCircle;
+    public int circleValue;
 }

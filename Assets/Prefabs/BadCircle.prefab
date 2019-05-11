@@ -12,6 +12,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: BadCircle
       objectReference: {fileID: 0}
+    - target: {fileID: 1649666391981252388, guid: 6db661d857521074ebfe622d38e2fd79,
+        type: 3}
+      propertyPath: m_TagString
+      value: BadCircle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8475169203144667284, guid: 6db661d857521074ebfe622d38e2fd79,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8475169203144667284, guid: 6db661d857521074ebfe622d38e2fd79,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8475169203144667284, guid: 6db661d857521074ebfe622d38e2fd79,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9180649594602590570, guid: 6db661d857521074ebfe622d38e2fd79,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -65,21 +85,6 @@ PrefabInstance:
     - target: {fileID: 9180649594602590570, guid: 6db661d857521074ebfe622d38e2fd79,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8475169203144667284, guid: 6db661d857521074ebfe622d38e2fd79,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8475169203144667284, guid: 6db661d857521074ebfe622d38e2fd79,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8475169203144667284, guid: 6db661d857521074ebfe622d38e2fd79,
-        type: 3}
-      propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

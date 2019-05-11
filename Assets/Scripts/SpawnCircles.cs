@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SpawnCircles : MonoBehaviour
 {
-    public Circle badCircle;
-    public Circle goodCircle;
+    public GameObject badCircle;
+    public GameObject goodCircle;
     public GameObject boundary;
     public List<Vector2> spawnPositions = new List<Vector2>();
 
@@ -17,7 +17,7 @@ public class SpawnCircles : MonoBehaviour
     void Start()
     {
         GameManager.i.circles = this;
-        ResetSpawnInterval();
+        spawnInterval = GameManager.i.GameMechanicsParameters.basicSpawnInterval;
         halfBoundarySizeX = boundary.GetComponent<BoxCollider2D>().size.x / 2f;
         halfBoundarySizeY = boundary.GetComponent<BoxCollider2D>().size.y / 2f;
     }
@@ -35,7 +35,7 @@ public class SpawnCircles : MonoBehaviour
             if(Random.Range(0f, 1f) <= GameManager.i.GameMechanicsParameters.chanceForBadCircle)
                 CreateCircle(badCircle);
             else CreateCircle(goodCircle);
-            ResetSpawnInterval();
+            SetSpawnInterval();
         }
         else
         {
@@ -61,10 +61,10 @@ public class SpawnCircles : MonoBehaviour
         return false;
     }
 
-    void CreateCircle(Circle obj)
+    void CreateCircle(GameObject obj)
     {
-        Circle circle = Instantiate(obj, position, Quaternion.identity);
-        circle.SetLifeTime(Random.Range(GameManager.i.GameMechanicsParameters.minLifeTime,
+        GameObject circle = Instantiate(obj, position, Quaternion.identity);
+        circle.GetComponent<Circle>().SetLifeTime(Random.Range(GameManager.i.GameMechanicsParameters.minLifeTime,
                                         GameManager.i.GameMechanicsParameters.maxLifeTime));
         circle.transform.parent = transform;
     }
@@ -79,8 +79,8 @@ public class SpawnCircles : MonoBehaviour
         return temp;
     }
 
-    void ResetSpawnInterval()
+    void SetSpawnInterval()
     {
-        spawnInterval = GameManager.i.GameMechanicsParameters.spawnInterval;
+        spawnInterval = GameManager.i.GameMechanicsParameters.basicSpawnInterval - GameManager.i.GameMechanicsParameters.spawnIntervalModifier * Time.unscaledTime;
     }
 }
