@@ -19,17 +19,15 @@ public class SaveGame
 
     void Start()
     {
-        ResetCurrentScore();
+        score = highscore = 0f;
     }
 
     public void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/savedGames.gd");
-        //Score savedScore = new Score();
-        Debug.Log("Score: " + score + ", highscore: " + highscore);
+        Debug.Log("Saving, score: " + score + ", highscore: " + highscore);
         if(highscore > savedScore.highscore) savedScore.highscore = highscore;
-        //savedScore.score = score;
         bf.Serialize(file, savedScore);
         file.Close();
     }
@@ -44,10 +42,5 @@ public class SaveGame
             GameManager.i.savegame.highscore = savedScore.highscore;
             file.Close();
         }
-    }
-
-    void ResetCurrentScore()
-    {
-        score = 0f;
     }
 }
