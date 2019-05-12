@@ -32,6 +32,11 @@ public class UIManager : MonoBehaviour
         gameOverScoreTextBox.text = GameManager.i.scoreTextHeader + GameManager.i.savegame.score.ToString();
     }
 
+    public void SetTimeElapsedText()
+    {
+        timeElapsedTextBox.text = GameManager.i.timeElapsedTextHeader + GameManager.i.savegame.score.ToString();
+    }
+
     public void ShowPanel(GameObject gameObject)
     {
         gameObject.SetActive(true);

@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
         if (isGameRunning)
         {
             savegame.score += Mathf.Round(Time.unscaledDeltaTime * 100.0f) / 100.0f;
+            UIManager.SetTimeElapsedText();
         }
     }
 
