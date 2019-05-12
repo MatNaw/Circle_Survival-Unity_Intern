@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public SpawnCircles circles;
     public GameMechanicsParameters GameMechanicsParameters;
 
+    public string highscoreTextHeader;
+    public string scoreTextHeader;
+
     public bool isGameRunning;
 
     #region SINGLETON
@@ -54,6 +57,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         restart += LoadGame;
+        restart += ResumeGame;
     }
 
     void Update()
@@ -66,12 +70,14 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-
+        Time.timeScale = GameMechanicsParameters.pausedTimeScale;
+        isGameRunning = false;
     }
 
     public void ResumeGame()
     {
-
+        Time.timeScale = GameMechanicsParameters.defaultTimeScale;
+        isGameRunning = true;
     }
 
     public void RestartGame()
@@ -85,16 +91,22 @@ public class GameManager : MonoBehaviour
     void LoadGame()
     {
         savegame.Load();
-        Debug.Log("Score: " + savegame.score + ", highscore: " + savegame.highscore);
-        isGameRunning = true; //test
+        ResetCurrentScore();
+        Debug.Log("Loading, score: " + savegame.score + ", highscore: " + savegame.highscore);
     }
 
     public void GameOver()
     {
-        if (savegame.score > savegame.highscore) savegame.highscore = savegame.score;
+        PauseGame();
+        if (savegame.score > savegame.highscore)
+            savegame.highscore = savegame.score;
         savegame.Save();
-        isGameRunning = false;
         UIManager.HidePanel(UIManager.gameUIPanel);
         UIManager.ShowPanel(UIManager.gameOverPanel);
+    }
+
+    public void ResetCurrentScore()
+    {
+        savegame.score = 0f;
     }
 }

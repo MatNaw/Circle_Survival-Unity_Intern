@@ -6,6 +6,7 @@ public class SpawnCircles : MonoBehaviour
 {
     public GameObject badCircle;
     public GameObject goodCircle;
+    public GameObject fastCircle;
     public GameObject boundary;
     public List<Vector2> spawnPositions = new List<Vector2>();
     public List<Circle> circlesList = new List<Circle>();
@@ -13,6 +14,7 @@ public class SpawnCircles : MonoBehaviour
     float spawnInterval;
     float minLifeTime;
     float maxLifeTime;
+
     Vector2 position;
     float minSpawnX;
     float maxSpawnX;
@@ -36,11 +38,18 @@ public class SpawnCircles : MonoBehaviour
 
     void Spawn()
     {
-        if (spawnInterval <= 0.0f)
+        if (spawnInterval <= 0.0f || circlesList.Count == 0)
         {
             CalculatePosition();
-            if(Random.Range(0f, 1f) <= GameManager.i.GameMechanicsParameters.chanceForBadCircle)
+            float random = Random.Range(0f, 1f);
+            if (random <= GameManager.i.GameMechanicsParameters.chanceForBadCircle)
+            {
                 CreateCircle(badCircle);
+            }
+            else if (random <= GameManager.i.GameMechanicsParameters.chanceForBadCircle + GameManager.i.GameMechanicsParameters.chanceForFastCircle)
+            {
+                CreateCircle(fastCircle);
+            }
             else CreateCircle(goodCircle);
             SetSpawnInterval();
         }
@@ -64,9 +73,6 @@ public class SpawnCircles : MonoBehaviour
         foreach (Vector2 pos in spawnPositions)
         {
             if ((pos - position).magnitude < goodCircle.transform.localScale.x) return true;
-            /*if (Mathf.Abs(pos.x - position.x) < goodCircle.transform.localScale.x) return true;
-            else if (Mathf.Abs(pos.y - position.y) < goodCircle.transform.localScale.y) return true;
-            else if ((pos - position).magnitude < goodCircle.transform.localScale.y) return true;*/
         }
         return false;
     }
@@ -74,7 +80,21 @@ public class SpawnCircles : MonoBehaviour
     void CreateCircle(GameObject obj)
     {
         GameObject circle = Instantiate(obj, position, Quaternion.identity);
-        circle.GetComponent<Circle>().SetLifeTime(Random.Range(minLifeTime, maxLifeTime));
+        if (obj.tag == "FastCircle")
+        {
+            circle.GetComponent<Circle>().SetLifeTime(GameManager.i.GameMechanicsParameters.fastCircleLifeTime);
+        }
+        if (obj.tag == "BadCircle")
+        {
+            circle.GetComponent<Circle>().SetLifeTime(GameManager.i.GameMechanicsParameters.badCircleLifeTime);
+        }
+        else
+        {
+            circle.GetComponent<Circle>().SetLifeTime(Random.Range(minLifeTime - GameManager.i.GameMechanicsParameters.lifeTimeModifier * Time.unscaledDeltaTime,
+                                                                   maxLifeTime - GameManager.i.GameMechanicsParameters.lifeTimeModifier * Time.unscaledDeltaTime
+                                                                  )
+                                                     );
+        }
         circle.transform.parent = transform;
         circlesList.Add(circle.GetComponent<Circle>());
     }
@@ -106,11 +126,20 @@ public class SpawnCircles : MonoBehaviour
 
     void SetSpawnInterval()
     {
-        spawnInterval = GameManager.i.GameMechanicsParameters.basicSpawnInterval - GameManager.i.GameMechanicsParameters.spawnIntervalModifier * Time.unscaledTime;
+        if (spawnInterval > GameManager.i.GameMechanicsParameters.minSpawnInterval)
+        {
+            spawnInterval = GameManager.i.GameMechanicsParameters.basicSpawnInterval - GameManager.i.GameMechanicsParameters.spawnIntervalModifier * Time.unscaledTime;
+        }
+        else spawnInterval = GameManager.i.GameMechanicsParameters.minSpawnInterval;
     }
 
     void Reset()
     {
+        for (int i = circlesList.Count - 1; i >= 0; i--)
+        {
+            circlesList[i].DestroyCircle();
+        }
+
         circlesList = new List<Circle>();
         spawnInterval = GameManager.i.GameMechanicsParameters.basicSpawnInterval;
         minLifeTime = GameManager.i.GameMechanicsParameters.basicMinLifeTime;

@@ -13,7 +13,8 @@ public class Circle : MonoBehaviour
 
     void Update()
     {
-        countdownToDie();
+        if(GameManager.i.isGameRunning)
+            countdownToDie();
     }
 
     void countdownToDie()

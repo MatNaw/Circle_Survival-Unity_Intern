@@ -43,12 +43,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e32a2368c3a2634d808d3b2e80025f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultTimeScale: 1
+  pausedTimeScale: 0
   basicMinLifeTime: 2
   basicMaxLifeTime: 4
   lifeTimeModifier: 0.2
+  badCircleLifeTime: 3
+  fastCircleLifeTime: 1
   basicSpawnInterval: 2
   spawnIntervalModifier: 0.05
+  minSpawnInterval: 1
   chanceForBadCircle: 0.1
+  chanceForFastCircle: 0.15
 --- !u!1 &4332393029989176103
 GameObject:
   m_ObjectHideFlags: 0

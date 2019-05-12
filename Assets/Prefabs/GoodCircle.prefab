@@ -226,11 +226,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: GoodCircle
       objectReference: {fileID: 0}
-    - target: {fileID: 1933000053563732799, guid: 6db661d857521074ebfe622d38e2fd79,
-        type: 3}
-      propertyPath: fillImage
-      value: 
-      objectReference: {fileID: 8287600842479507096}
     - target: {fileID: 8475169203144667284, guid: 6db661d857521074ebfe622d38e2fd79,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -254,7 +249,12 @@ PrefabInstance:
     - target: {fileID: 8475169203144667284, guid: 6db661d857521074ebfe622d38e2fd79,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.1387968
+      value: 0.13257027
+      objectReference: {fileID: 0}
+    - target: {fileID: 8475169203144667284, guid: 6db661d857521074ebfe622d38e2fd79,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9180649594602590570, guid: 6db661d857521074ebfe622d38e2fd79,
         type: 3}
@@ -310,6 +310,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1933000053563732799, guid: 6db661d857521074ebfe622d38e2fd79,
+        type: 3}
+      propertyPath: fillImage
+      value: 
+      objectReference: {fileID: 8287600842479507096}
+    - target: {fileID: 2437279678308593087, guid: 6db661d857521074ebfe622d38e2fd79,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db661d857521074ebfe622d38e2fd79, type: 3}
