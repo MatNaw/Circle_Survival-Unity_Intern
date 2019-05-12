@@ -40,6 +40,8 @@ public class SpawnCircles : MonoBehaviour
     {
         if (spawnInterval <= 0.0f || circlesList.Count == 0)
         {
+            if(circlesList.Count == 0)
+                spawnInterval = GameManager.i.GameMechanicsParameters.basicSpawnInterval;
             CalculatePosition();
             float random = Random.Range(0f, 1f);
             if (random <= GameManager.i.GameMechanicsParameters.chanceForBadCircle)
@@ -90,8 +92,8 @@ public class SpawnCircles : MonoBehaviour
         }
         else
         {
-            circle.GetComponent<Circle>().SetLifeTime(Random.Range(minLifeTime - GameManager.i.GameMechanicsParameters.lifeTimeModifier * Time.unscaledDeltaTime,
-                                                                   maxLifeTime - GameManager.i.GameMechanicsParameters.lifeTimeModifier * Time.unscaledDeltaTime
+            circle.GetComponent<Circle>().SetLifeTime(Random.Range(minLifeTime - GameManager.i.GameMechanicsParameters.lifeTimeModifier * GameManager.i.savegame.score,
+                                                                   maxLifeTime - GameManager.i.GameMechanicsParameters.lifeTimeModifier * GameManager.i.savegame.score
                                                                   )
                                                      );
         }
@@ -128,7 +130,7 @@ public class SpawnCircles : MonoBehaviour
     {
         if (spawnInterval > GameManager.i.GameMechanicsParameters.minSpawnInterval)
         {
-            spawnInterval = GameManager.i.GameMechanicsParameters.basicSpawnInterval - GameManager.i.GameMechanicsParameters.spawnIntervalModifier * Time.unscaledTime;
+            spawnInterval = GameManager.i.GameMechanicsParameters.basicSpawnInterval - GameManager.i.GameMechanicsParameters.spawnIntervalModifier * GameManager.i.savegame.score;
         }
         else spawnInterval = GameManager.i.GameMechanicsParameters.minSpawnInterval;
     }

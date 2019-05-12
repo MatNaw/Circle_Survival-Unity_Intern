@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public Text mainMenuHighscoreTextBox;
     public Text gameOverHighscoreTextBox;
     public Text gameOverScoreTextBox;
+    public Text newHighscoreTextBox;
     public Text timeElapsedTextBox;
 
     void Awake()
@@ -28,13 +29,18 @@ public class UIManager : MonoBehaviour
 
     public void SetHighscoreText()
     {
-        mainMenuHighscoreTextBox.text = gameOverHighscoreTextBox.text = GameManager.i.highscoreTextHeader + GameManager.i.savegame.highscore.ToString();
-        gameOverScoreTextBox.text = GameManager.i.scoreTextHeader + GameManager.i.savegame.score.ToString();
+        if (GameManager.i.savegame.score >= GameManager.i.savegame.savedScore.highscore)
+        {
+            newHighscoreTextBox.enabled = true;
+        }
+        else newHighscoreTextBox.enabled = false;
+        mainMenuHighscoreTextBox.text = gameOverHighscoreTextBox.text = GameManager.i.highscoreTextHeader + GameManager.i.savegame.highscore.ToString("F2");
+        gameOverScoreTextBox.text = GameManager.i.scoreTextHeader + GameManager.i.savegame.score.ToString("F2");
     }
 
     public void SetTimeElapsedText()
     {
-        timeElapsedTextBox.text = GameManager.i.timeElapsedTextHeader + GameManager.i.savegame.score.ToString();
+        timeElapsedTextBox.text = GameManager.i.timeElapsedTextHeader + GameManager.i.savegame.score.ToString("F2");
     }
 
     public void ShowPanel(GameObject gameObject)

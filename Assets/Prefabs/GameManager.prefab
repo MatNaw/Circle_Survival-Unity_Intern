@@ -47,11 +47,11 @@ MonoBehaviour:
   pausedTimeScale: 0
   basicMinLifeTime: 2
   basicMaxLifeTime: 4
-  lifeTimeModifier: 0.2
+  lifeTimeModifier: 0.04
   badCircleLifeTime: 3
   fastCircleLifeTime: 1
-  basicSpawnInterval: 2
-  spawnIntervalModifier: 0.05
+  basicSpawnInterval: 2.5
+  spawnIntervalModifier: 0.01
   minSpawnInterval: 1
   chanceForBadCircle: 0.1
   chanceForFastCircle: 0.15
