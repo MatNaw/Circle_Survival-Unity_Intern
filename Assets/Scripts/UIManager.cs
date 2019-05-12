@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public Text mainMenuHighscoreTextBox;
     public Text gameOverHighscoreTextBox;
     public Text gameOverScoreTextBox;
+    public Text timeElapsedTextBox;
 
     void Awake()
     {
@@ -25,7 +26,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void SetHighscoreText()
+    public void SetHighscoreText()
     {
         mainMenuHighscoreTextBox.text = gameOverHighscoreTextBox.text = GameManager.i.highscoreTextHeader + GameManager.i.savegame.highscore.ToString();
         gameOverScoreTextBox.text = GameManager.i.scoreTextHeader + GameManager.i.savegame.score.ToString();

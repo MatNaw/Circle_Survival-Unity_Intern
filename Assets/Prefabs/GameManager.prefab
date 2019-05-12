@@ -102,4 +102,7 @@ MonoBehaviour:
   UIManager: {fileID: 0}
   circles: {fileID: 0}
   GameMechanicsParameters: {fileID: 1166022594}
+  highscoreTextHeader: 'Highscore: '
+  scoreTextHeader: 'Score: '
+  timeElapsedTextHeader: 'Time elapsed: '
   isGameRunning: 0

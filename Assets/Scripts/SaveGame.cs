@@ -26,8 +26,7 @@ public class SaveGame
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/savedGames.gd");
-        Debug.Log("Saving, score: " + score + ", highscore: " + highscore);
-        if(highscore > savedScore.highscore) savedScore.highscore = highscore;
+        if (highscore > savedScore.highscore) savedScore.highscore = highscore;
         bf.Serialize(file, savedScore);
         file.Close();
     }

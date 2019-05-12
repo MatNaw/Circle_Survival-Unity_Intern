@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     public string highscoreTextHeader;
     public string scoreTextHeader;
+    public string timeElapsedTextHeader;
 
     public bool isGameRunning;
 
@@ -60,6 +61,11 @@ public class GameManager : MonoBehaviour
         restart += ResumeGame;
     }
 
+    void Start()
+    {
+        LoadGame();
+    }
+
     void Update()
     {
         if (isGameRunning)
@@ -92,7 +98,7 @@ public class GameManager : MonoBehaviour
     {
         savegame.Load();
         ResetCurrentScore();
-        Debug.Log("Loading, score: " + savegame.score + ", highscore: " + savegame.highscore);
+        UIManager.SetHighscoreText();
     }
 
     public void GameOver()
@@ -101,6 +107,7 @@ public class GameManager : MonoBehaviour
         if (savegame.score > savegame.highscore)
             savegame.highscore = savegame.score;
         savegame.Save();
+        UIManager.SetHighscoreText();
         UIManager.HidePanel(UIManager.gameUIPanel);
         UIManager.ShowPanel(UIManager.gameOverPanel);
     }
