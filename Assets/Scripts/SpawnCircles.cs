@@ -86,7 +86,7 @@ public class SpawnCircles : MonoBehaviour
         {
             circle.GetComponent<Circle>().SetLifeTime(GameManager.i.GameMechanicsParameters.fastCircleLifeTime);
         }
-        if (obj.tag == "BadCircle")
+        else if (obj.tag == "BadCircle")
         {
             circle.GetComponent<Circle>().SetLifeTime(GameManager.i.GameMechanicsParameters.badCircleLifeTime);
         }
